@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="description"
+	content="A front-end template that helps you build fast, modern mobile web apps." />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+<title>CPG | Compagnie des Phosphates de Gafsa</title>
+
+<!-- Add to homescreen for Chrome on Android -->
+<meta name="mobile-web-app-capable" content="yes" />
+<link rel="icon" sizes="192x192" th:href="@{images/cpg-gafsa.jpg}" />
+
+
+<link rel="shortcut icon" th:href="@{images/logo.png}" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<link rel="stylesheet"
+	href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css" />
+<link rel="stylesheet" th:href="@{css/stylesmdl.css}" />
+<style>
+#view-source {
+	position: fixed;
+	display: block;
+	right: 0;
+	bottom: 0;
+	margin-right: 40px;
+	margin-bottom: 40px;
+	z-index: 900;
+}
+</style>
+
+
+
+</head>
+<body>
+	<div
+		class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+		<header
+			class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+			<div class="mdl-layout__header-row">
+				<span class="mdl-layout-title">Opération effectue</span> <img
+					src="images/site.png" width="700" height="69" />
+				<div class="mdl-layout-spacer"></div>
+
+
+			</div>
+		</header>
+		<div
+			class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+			<header class="demo-drawer-header">
+				<img src="images/cpg-gafsa.jpg" class="demo-avatar">
+				<div class="demo-avatar-dropdown">
+					<span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
+					<div class="mdl-layout-spacer"></div>
+					<button id="accbtn"
+						class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+						<i class="material-icons" role="presentation">arrow_drop_down</i>
+						<span class="visuallyhidden">Accounts</span>
+					</button>
+					<ul
+						class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+						id="accbtn" th:for="demo-menu-lower-left">
+						<li class="mdl-menu__item">hello@example.com</li>
+						<li class="mdl-menu__item">info@example.com</li>
+						<li class="mdl-menu__item"><i class="material-icons">add</i>Add
+							another account...</li>
+					</ul>
+				</div>
+			</header>
+			<nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+				<a class="mdl-navigation__link" th:href="@{/index}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">home</i>Home</a> <a class="mdl-navigation__link"
+					th:href="@{/add}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">add_circle_outline</i>Add</a> <a
+					class="mdl-navigation__link" th:href="@{/promos}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">store</i>Magasin</a> <a
+					class="mdl-navigation__link" th:href="@{/report}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">report</i>Report</a> <a
+					class="mdl-navigation__link" th:href="@{/updates}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">priority_high</i>Admin</a> <a
+					class="mdl-navigation__link" th:href="@{/users}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">people</i>Social</a> <a
+					class="mdl-navigation__link" th:href="@{login?logout}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">lock</i>Logout</a>
+
+				<div class="mdl-layout-spacer"></div>
+				<a class="mdl-navigation__link"
+					href="https://www.facebook.com/mohamed.farah.CA"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">copyright</i><span class="visuallyhidden">Help</span></a>
+			</nav>
+		</div>
+		<th:main class="mdl-layout__content mdl-color--grey-100" />
+		<img src="images/done.jpg" />
+		<!--  <div class="mdl-grid demo-content">  -->
+		<div class="">
+			<div class="mdl-card__title mdl-card--expand"></div>
+
+		</div>
+
+		<div
+			class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+
+
+
+
+		</div>
+	</div>
+	</th:main>
+
+
+
+	<a href="http://www.cpg.com.tn" target="_blank" id="view-source"
+		class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View
+		Source</a>
+	<script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</body>
+</html>

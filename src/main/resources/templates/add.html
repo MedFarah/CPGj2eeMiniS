@@ -1,0 +1,192 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
+    <title>CPG | Compagnie des Phosphates de Gafsa</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <link rel="icon" sizes="192x192" th:href="@{images/cpg-gafsa.jpg}"/>
+
+   
+    <link rel="shortcut icon" th:href="@{images/logo.png}"/>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css"/>
+    <link rel="stylesheet" th:href="@{css/stylesmdl.css}"/>
+    
+   
+  </head>
+  <body>
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+      <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">Ajouter un article</span>
+          <div class="mdl-layout-spacer"></div>
+          <img src="images/site.png" width="700" height="69"/>
+         
+        </div>
+      </header>
+      
+      <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+      
+      
+        <header class="demo-drawer-header">
+          <img src="images/cpg-gafsa.jpg" class="demo-avatar">
+          <div class="demo-avatar-dropdown">
+            <span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
+            <div class="mdl-layout-spacer"></div>
+            <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+              <i class="material-icons" role="presentation">arrow_drop_down</i>
+              <span class="visuallyhidden">Accounts</span>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" id="accbtn">
+              <li class="mdl-menu__item">hello@example.com</li>
+              <li class="mdl-menu__item">info@example.com</li>
+              <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
+            </ul>
+          </div>
+        </header>
+        
+        
+       <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+				<a class="mdl-navigation__link" th:href="@{/index}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">home</i>Home</a> <a class="mdl-navigation__link"
+					th:href="@{/add}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">add_circle_outline</i>Add</a> <a
+					class="mdl-navigation__link" th:href="@{/promos}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">store</i>Magasin</a> <a
+					class="mdl-navigation__link" th:href="@{/report}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">report</i>Report</a> <a
+					class="mdl-navigation__link" th:href="@{/updates}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">priority_high</i>Admin</a> <a
+					class="mdl-navigation__link" th:href="@{/users}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">people</i>Social</a> <a
+					class="mdl-navigation__link" th:href="@{login?logout}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">lock</i>Logout</a>
+
+				<div class="mdl-layout-spacer"></div>
+				<a class="mdl-navigation__link"
+					href="https://www.facebook.com/mohamed.farah.CA"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">copyright</i><span class="visuallyhidden">Help</span></a>
+			</nav>
+      </div>
+      <main class="mdl-layout__content mdl-color--grey-100"/>
+        <div class="mdl-grid demo-content">
+          <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+          
+            
+<form th:action="@{add}" method="post" enctype="multipart/form-data">
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--5-col">
+    <input class="mdl-textfield__input" type="text" id="sample3"  name="stockcode" th:value="${article.stockcode}" >
+    <label class="mdl-textfield__label" for="sample3">Stock Code...</label>
+    
+  </div>
+  
+   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label  mdl-cell mdl-cell--6-col">
+    <input class="mdl-textfield__input" type="text" id="sample3"  name="designation" th:value="${article.designation}" maxlength="20">
+    <label class="mdl-textfield__label" for="sample3">Designation...</label>
+    <span class="text-danger" th:errors="${article.designation}" style="color:red" ></span>
+  </div>
+  
+ <!--   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label  mdl-cell mdl-cell--5-col">
+    <input class="mdl-textfield__input" type="text" id="sample3" name="unite" th:value="${article.unite}">
+    <label class="mdl-textfield__label" for="sample3">Unité...</label>
+    <span class="text-danger" th:errors="${article.unite}" style="color:red"></span>
+  </div> -->
+  
+   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label  mdl-cell mdl-cell--5-col">
+    <input class="mdl-textfield__input" type="text" id="sample3" name="prix" th:value="${article.prix}" >
+    <label class="mdl-textfield__label" for="sample3">Prix...</label>
+    <span class="text-danger" th:errors="${article.prix}" style="color:red"></span>
+    
+  </div>
+  
+   <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label  mdl-cell mdl-cell--5-col">
+    <input class="mdl-textfield__input" type="text" id="sample3"  name="description" th:value="${article.description}">
+    <label class="mdl-textfield__label" for="sample3">Description...</label>
+    <span class="text-danger" th:errors="${article.description}" style="color:red"></span>
+    
+  </div> -->
+  
+   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--6-col">
+    <input class="mdl-textfield__input" type="text" id="sample3" name="reference" th:value="${article.reference}">
+    <label class="mdl-textfield__label" for="sample3">Reference...</label>
+    <span class="text-danger" th:errors="${article.reference}" style="color:red"></span>
+    
+  </div>
+   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--5-col">
+    <input class="mdl-textfield__input" type="text" id="sample3" name="quantite" th:value="${article.quantite}" >
+    <label class="mdl-textfield__label" for="sample3">Quantité...</label>
+    <span class="text-danger" th:errors="${article.quantite}" style="color:red"></span>
+    
+  </div>
+  
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--6-col">
+  <div class="form-group blu-margin">
+    <!-- <select class="browser-default custom-select" name="magasin" th:value="${article.magasin}"  id="dropOperator">
+    <option value="0">select operator</option>
+    <option th:each="magasin : ${magasins}" th:value="${magasin.id}" th:text="${magasin.nom}"></option>
+    </select> -->
+      <label style="color:skyblue" >Magasin...</label>
+    <br>
+    <select id="soflow" name="magasin" th:value="${article.magasin}" >
+  <option>Select a Magasin</option>
+  <option th:each="magasin : ${magasins}" th:value="${magasin.id}" th:text="${magasin.nom}"></option>
+  
+</select>
+</div>
+   <!--  <input class="mdl-textfield__input" type="text" id="sample3" name="magasin" th:value="${article.magasin}">
+    <label class="mdl-textfield__label" for="sample3">Numero de Magasin...</label>
+     -->
+  </div>
+  
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--12-col">
+  <div class="form-group blu-margin">
+      <label style="color:skyblue" >Catégorie...</label>
+    <br>
+    <select id="soflow" name="categorie" th:value="${article.categorie}" >
+  <option>Select a Catégorie</option>
+  <option th:each="categorie : ${categories}" th:value="${categorie.id}" th:text="${categorie.type}"></option>
+  
+</select>
+</div>
+  </div>
+  
+ 
+				
+  <div class="mdl-cell mdl-cell--12-col mdl-grid">
+  	<div class="mdl-cell mdl-cell--5-col"></div>
+  		<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-cell mdl-cell--2-col">
+ 			 Ajouter
+		</button>
+  </div>
+  
+
+
+</form>
+          
+            
+            
+          </div>
+        </div>
+      </th:main>
+   <!-- <img src="images/site.png"  />  -->
+    </div>
+    
+            <a href="https://github.com/google/material-design-lite/blob/mdl-1.x/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View Source</a>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  </body>
+</html>

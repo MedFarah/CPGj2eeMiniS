@@ -1,0 +1,331 @@
+<!doctype html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="description"
+	content="A front-end template that helps you build fast, modern mobile web apps." />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+<title>CPG | Compagnie des Phosphates de Gafsa</title>
+
+<!-- Add to homescreen for Chrome on Android -->
+<meta name="mobile-web-app-capable" content="yes" />
+<link rel="icon" sizes="192x192" th:href="@{images/cpg-gafsa.jpg}" />
+
+
+<link rel="shortcut icon" th:href="@{images/logo.png}" />
+
+
+
+
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+<!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+<!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<link rel="stylesheet"
+	href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css" />
+<link rel="stylesheet" th:href="@{css/stylesmdl.css}" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<style>
+</style>
+</head>
+<body>
+	<div
+		class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+		<header
+			class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+			<div class="mdl-layout__header-row">
+				<span class="mdl-layout-title">Gérer les employés</span>
+				<div class="mdl-layout-spacer"></div>
+				<img src="images/site.png" width="700" height="69" />
+
+				<div
+					class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+					<label class="mdl-button mdl-js-button mdl-button--icon"
+						for="search"> <i class="material-icons">search</i>
+					</label>
+					<div class="mdl-textfield__expandable-holder">
+						<form th:action="@{/findU}">
+							<input class="mdl-textfield__input" type="text" id="search"
+								name="nom"> <label class="mdl-textfield__label"
+								for="search">Saisie le Nom ...</label>
+						</form>
+					</div>
+				</div>
+				
+			</div>
+		</header>
+		<div
+			class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+			<header class="demo-drawer-header">
+				<img src="images/cpg-gafsa.jpg" class="demo-avatar">
+				<div class="demo-avatar-dropdown">
+					<span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
+
+					<div class="mdl-layout-spacer"></div>
+					<button id="accbtn"
+						class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+						<i class="material-icons" role="presentation">arrow_drop_down</i>
+						<span class="visuallyhidden">Accounts</span> <span
+							class="mdl-button__ripple-container"><span
+							class="mdl-ripple is-animating"
+							style="width: 92.5097px; height: 92.5097px; transform: translate(-50%, -50%) translate(14px, 19px);"></span></span>
+					</button>
+					<ul
+						class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+						th:for="accbtn">
+						<li class="mdl-menu__item"><a th:href="@{login?logout}"><i
+								class="mdl-color-text--blue-grey-400 material-icons"
+								role="presentation">lock</i>LOGOUT</a></li>
+					</ul>
+				</div>
+			</header>
+			<nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+				<a class="mdl-navigation__link" th:href="@{/index}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">home</i>Home</a> <a class="mdl-navigation__link"
+					th:href="@{/add}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">add_circle_outline</i>Add</a> <a
+					class="mdl-navigation__link" th:href="@{/promos}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">store</i>Magasin</a> <a
+					class="mdl-navigation__link" th:href="@{/report}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">report</i>Report</a> <a
+					class="mdl-navigation__link" th:href="@{/updates}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">priority_high</i>Admin</a> <a
+					class="mdl-navigation__link" th:href="@{/users}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">people</i>Social</a> <a
+					class="mdl-navigation__link" th:href="@{login?logout}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">lock</i>Logout</a>
+
+				<div class="mdl-layout-spacer"></div>
+				<a class="mdl-navigation__link"
+					href="https://www.facebook.com/mohamed.farah.CA"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">copyright</i><span class="visuallyhidden">Help</span></a>
+			</nav>
+		</div>
+		<th:main class="mdl-layout__content mdl-color--grey-100 ">
+			<div class="mdl-grid demo-content  ">
+				<div id="tabUser" style="padding-right: 750px">
+					<div
+						class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+
+						<table
+							class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid ">
+							<thead>
+								<tr>
+									<th class="mdl-data-table__cell--non-numeric">Nom</th>
+									<th class="mdl-data-table__cell--non-numeric"></th>
+									<th ></th>
+									<th>Role</th>
+
+									<th></th>
+									<th>Adresse</th>
+
+								</tr>
+							</thead>
+							<tbody>
+
+
+								<tr th:each="e:${users}" th:style="${e.id}==0 ? 'display:none'">
+
+									<td th:style="${e.id}==0 ? 'display:none'"
+										class="mdl-data-table__cell--non-numeric" th:text="${e.nom}"></td>
+									<td  th:style="${e.id}==0 ? 'display:none'" 
+										th:text="${e.authorities}"></td>
+									<td th:style="${e.id}==0 ? 'display:none'"
+										th:text="${e.username}"></td>
+
+									<td th:style="${e.id}==0 ? 'display:none'"><a
+										th:href="@{/updates(id=${e.id})}"
+										class="launch-modal mdl-button mdl-js-button mdl-button--raised mdl-button--colored ">Modifier</a></td>
+									<td th:style="${e.id}==0 ? 'display:none'"><a
+										onclick="return confirm('Etes vous sure!')"
+										th:href="@{/deleteU(id=${e.id})}"
+										class="mdl-button mdl-js-button mdl-button--raised ">supprimer
+									</a></td>
+
+								</tr>
+
+							</tbody>
+						</table>
+
+
+					</div>
+				</div>
+			</div>
+		</th:main>
+	</div>
+
+	<!-- <!-- modal test -->
+	<div id="myModal" class="modal fade">
+		<form th:action="@{/editU}" method="post">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+
+						<h4 class="modal-title">Update</h4>
+						<button type="button" data-dismiss="modal"
+							style="margin-left: 300px">×</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group" style="display: none">
+							<label for="exampleInputPassword1">id</label> <input type="text"
+								class="form-control" id="role" name="id" th:value="${user.id}"
+								readonly />
+						</div>
+
+						<div class="form-group">
+							<label for="exampleInputPassword1">Role</label> <input
+								type="text" class="form-control" id="role" name="authorities"
+								th:value="${user.authorities}" /> <small id="emailHelp"
+								class="form-text text-muted">Poste occupée par
+								utilisateur</small>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Username</label> <input
+								type="text" class="form-control" id="role" name="username"
+								th:value="${user.username}" readonly />
+						</div>
+						<div class="form-group" style="display: none">
+							<label for="exampleInputPassword1">Password</label> <input
+								type="text" class="form-control" id="role" name="password"
+								th:value="${user.password}" readonly />
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Nom de l'utilisateur</label> <input
+								type="text" class="form-control" id="nom" name="nom"
+								th:value="${user.nom}" readonly />
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default close-modal"
+							data-dismiss="modal" autofocus>Close</button>
+						<input type="submit" class="btn btn-primary" value="edit" />
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+
+
+
+
+	<!-- <!-- modal test add -->
+	<div id="myModaladd" class="modal fade">
+		<form th:action="@{/editU}" method="post">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+
+						<h4 class="modal-title">Ajouter</h4>
+						<button type="button" data-dismiss="modal"
+							style="margin-left: 300px">×</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group" style="display: none">
+							<label for="exampleInputPassword1">id</label> <input type="text"
+								class="form-control" id="role" name="id" th:value="${u.id}"
+								readonly />
+						</div>
+
+						<div class="form-group">
+
+							<div class="form-group">
+								<label for="exampleInputPassword1">Login</label> <input
+									type="text" class="form-control" id="role" name="username"
+									th:value="${u.username}" />
+							</div>
+							<div class="form-group">
+								<label for="exampleInputPassword1">Password</label> <input
+									id="password" name="password" type="password"
+									pattern="^\S{6,}$"
+									onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;"
+									placeholder="Password" required> <input
+									id="password_two" type="password" pattern="^\S{6,}$"
+									onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');"
+									placeholder="Verify Password" required>
+							</div>
+							<label for="exampleInputPassword1">Role</label> <input
+								type="text" class="form-control" id="role" name="authorities"
+								th:value="${u.authorities}" /> <small id="emailHelp"
+								class="form-text text-muted">Poste occupée par
+								utilisateur</small>
+						</div>
+
+						<div class="form-group">
+							<label for="exampleInputEmail1">Nom de l'utilisateur</label> <input
+								type="text" class="form-control" id="nom" name="nom"
+								th:value="${u.nom}" />
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default close-modal"
+							data-dismiss="modal" autofocus>Close</button>
+						<input type="submit" class="btn btn-primary" value="save" />
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<a target="_blank" id="view-source"
+		class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white launch-modal-add">Add
+		User</a>
+	<script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript"> 
+   $(document).ready(function() 
+  { 
+   $(".launch-modal-add").click(function(event) 
+   { 
+	  
+	   
+	  
+    $("#myModaladd").modal( 
+    { 
+     backdrop: 'static' 
+    }); 
+   }); 
+  });  
+  
+   
+   
+ window.onload = function(){
+	
+		 var req = [[${id}]] ;
+			   if( req > 0)
+			   {
+			    $("#myModal").modal( 
+			    { 
+			     backdrop: 'static' 
+			    }); 
+			   }
+			  
+ };
+  
+ </script>
+</body>
+</html>

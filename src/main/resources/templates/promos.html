@@ -1,0 +1,390 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>CPG | Compagnie des Phosphates de Gafsa</title>
+
+<!-- Add to homescreen for Chrome on Android -->
+<meta name="mobile-web-app-capable" content="yes" />
+
+<link rel="icon" sizes="192x192" th:href="@{images/cpg-gafsa.jpg}" />
+
+
+<link rel="shortcut icon" th:href="@{images/logo.png}" />
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<link rel="stylesheet"
+	href="https://code.getmdl.io/1.3.0/material.cyan-light_blue.min.css" />
+<link rel="stylesheet" th:href="@{css/stylesmdl.css}" />
+
+<style>
+
+th {
+ 
+  color: #808080				;
+   font: 15px arial, sans-serif;
+}
+</style>
+
+</head>
+<body>
+
+	<div
+		class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+		<header
+			class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+			<div class="mdl-layout__header-row">
+				<span class="mdl-layout-title">Magasin</span>
+				<nav class="mdl-navigation">
+					<a class="mdl-navigation__link" th:href="@{/find(magasin_id=1)}">Metlaoui</a>
+					<a class="mdl-navigation__link" th:href="@{/find(magasin_id=2)}">Moulares</a>
+					<a class="mdl-navigation__link" th:href="@{/find(magasin_id=3)}">Redeyef</a>
+				</nav>
+
+				<marquee>
+
+
+					<div class="mdl-layout-spacer"></div>
+					<img src="images/site.png" width="700" height="55" />
+					<div
+						class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+					</div>
+				</marquee>
+			</div>
+		</header>
+
+		<div
+			class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+			<header class="demo-drawer-header">
+				<img src="images/cpg-gafsa.jpg" class="demo-avatar">
+				<div class="demo-avatar-dropdown">
+					<span th:inline="text">[[${#httpServletRequest.remoteUser}]]
+					</span>
+					<div class="mdl-layout-spacer"></div>
+					<button id="accbtn"
+						class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+						<i class="material-icons" role="presentation">arrow_drop_down</i>
+						<span class="visuallyhidden">Accounts</span> <span
+							class="mdl-button__ripple-container"><span
+							class="mdl-ripple is-animating"
+							style="width: 92.5097px; height: 92.5097px; transform: translate(-50%, -50%) translate(14px, 19px);"></span></span>
+					</button>
+					<ul
+						class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+						th:for="accbtn">
+						<li class="mdl-menu__item"><a th:href="@{login?logout}"><i
+								class="mdl-color-text--blue-grey-400 material-icons"
+								role="presentation">lock</i>LOGOUT</a></li>
+
+					</ul>
+				</div>
+			</header>
+			<nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+				<a class="mdl-navigation__link" th:href="@{/index}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">home</i>Home</a> <a class="mdl-navigation__link"
+					th:href="@{/add}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">add_circle_outline</i>Add</a> <a
+					class="mdl-navigation__link" th:href="@{/promos}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">store</i>Magasin</a> <a
+					class="mdl-navigation__link" th:href="@{/report}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">report</i>Report</a> <a
+					class="mdl-navigation__link" th:href="@{/updates}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">priority_high</i>Admin</a> <a
+					class="mdl-navigation__link" th:href="@{/users}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">people</i>Social</a> <a
+					class="mdl-navigation__link" th:href="@{login?logout}"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">lock</i>Logout</a>
+
+				<div class="mdl-layout-spacer"></div>
+				<a class="mdl-navigation__link"
+					href="https://www.facebook.com/mohamed.farah.CA"><i
+					class="mdl-color-text--blue-grey-400 material-icons"
+					role="presentation">copyright</i><span class="visuallyhidden">Help</span></a>
+			</nav>
+		</div>
+		<th:main class="mdl-layout__content mdl-color--grey-100 ">
+
+
+
+
+
+
+
+
+
+			<div th:if="${id>0}"
+				style="position: absolute; top: 300 px; left: 450px; width: 250px; height: 69px">
+				<div class="container">
+					<br> <span class="mdl-layout-title "
+						style="color: green; font-style: italic"> Choix par
+						Catégorie</span> <br>
+					<nav class="mdl-navigation">
+						<form>
+
+							<span class="mdl-chip mdl-chip--contact"
+								style="position: absolute; top: 300 px; left: -150px"> <span
+								class="mdl-chip__contact mdl-color--teal mdl-color-text--white">A</span>
+								<span class="mdl-chip__text"><a
+									class="mdl-navigation__link"
+									th:href="@{/find(magasin_id=${id},categorie_id=1)}">Class A</a></span>
+							</span>
+						</form>
+						<span class="mdl-chip mdl-chip--contact"
+							style="position: absolute; top: 300 px; left: 100px"> <span
+							class="mdl-chip__contact mdl-color--teal mdl-color-text--white">B</span>
+							<span class="mdl-chip__text"><a
+								class="mdl-navigation__link"
+								th:href="@{/find(magasin_id=${id},categorie_id=2)}">Class B</a></span>
+						</span> <span class="mdl-chip mdl-chip--contact"
+							style="position: absolute; top: 300 px; left: 350px"> <span
+							class="mdl-chip__contact mdl-color--teal mdl-color-text--white">C</span>
+							<span class="mdl-chip__text"> <a
+								class="mdl-navigation__link"
+								th:href="@{/find(magasin_id=${id},categorie_id=3)}">Class C</a></span>
+						</span>
+					</nav>
+				</div>
+
+			</div>
+
+
+			<div class="page-content mdl-grid" th:if="${id>0}" id="tab">
+				<div style="margin-left:120px" class=" mdl-cell mdl-cell--12-col-desktop ">
+					<i class="material-icons">shopping_cart</i> <span
+						style="color: red; font-style: oblique; font-size: 15px"
+						th:text="${nomMag}"> </span>
+					<table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp"  >
+
+						<thead>
+							<tr>
+								<th class="mdl-data-table__cell--non-numeric">Stock code</th>
+								<th class="mdl-data-table__cell--non-numeric">Designation</th>
+								<th class="mdl-data-table__cell--non-numeric">prix</th>
+								<th class="mdl-data-table__cell--non-numeric">reference</th>
+								<th class="mdl-data-table__cell--non-numeric">quantité</th>
+								<th class="mdl-data-table__cell--non-numeric">Classe</th>
+								<th class="mdl-data-table__cell--non-numeric"></th>
+
+								<th></th>
+								
+
+
+							</tr>
+						</thead>
+						<tbody>
+
+
+							<tr th:each="e:${articles}">
+								<td class="mdl-data-table__cell--non-numeric"
+									th:text="${e.stockcode}"></td>
+								<td class="mdl-data-table__cell--non-numeric"
+									th:text="${e.designation}"></td>
+								<td class="mdl-data-table__cell--non-numeric"
+									th:text="${e.prix}"></td>
+								<td class="mdl-data-table__cell--non-numeric"
+									th:text="${e.reference}"></td>
+								<td class="mdl-data-table__cell--non-numeric"
+									th:text="${e.quantite}"></td>
+								<td class="mdl-data-table__cell--non-numeric"
+									th:text="${e.categorie.getType()}"></td>
+								<td class="mdl-data-table__cell--non-numeric"><a
+									th:href=@{edit(stockcode=${e.stockcode})}
+									class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Modifier</a></td>
+								<td class="mdl-data-table__cell--non-numeric"><a
+									onclick="return confirm('Etes vous sure!')"
+									th:href="@{/delete(stockcode=${e.stockcode})}"
+									class="mdl-button mdl-js-button mdl-button--raised ">supprimer
+								</a></td>
+
+							</tr>
+
+						</tbody>
+					</table>
+					<ul class="pagination nav-pills" style="margin-left: 500px">
+						<li th:classappend="${pageActive}==${status.index}?'active'"
+							th:each="p,status:${pagess}"><a
+							th:href="@{find(magasin_id=${id},categorie_id=${idc},page=${status.index})}"
+							th:text="${status.index}"> </a></li>
+
+
+					</ul>
+
+				</div>
+			</div>
+
+
+
+
+
+			<th:main class="mdl-layout__content container">
+				<div
+					class="mdl-progress mdl-js-progress mdl-progress__indeterminate"
+					th:if="${id<0}" id="mydiv">
+					<div class="row ">
+						<div>
+							<div class="card">
+
+								<div class="image">
+									<img src="images/logo.png" width="100%">
+								</div>
+
+								<div class="text"></div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+				<div class="mdl-grid demo-content " th:if="${id==0}">
+					<div
+						class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+
+					</div>
+
+					<div
+						class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
+
+
+						<img src="images/atelier.jpg" /> <img src="images/atelier2.jpg" />
+
+					</div>
+					<div
+						class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+						<div
+							class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+							<div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
+								<h2 class="mdl-card__title-text">Magasin</h2>
+							</div>
+							<div class="mdl-card__supporting-text mdl-color-text--grey-600">
+								C.P.G</div>
+							<div class="mdl-card__actions mdl-card--border">
+
+								<button
+									class=" launch-modal mdl-button mdl-js-button mdl-js-ripple-effect ">Read
+									More</button>
+							</div>
+						</div>
+
+
+
+
+
+
+
+
+
+						<div class="demo-separator mdl-cell--1-col"></div>
+						<div
+							class="demo-options mdl-card mdl-color--deep-purple-500 mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--12-col-desktop">
+							<div
+								class="mdl-card__supporting-text mdl-color-text--blue-grey-50">
+								<h3>Les Catégories</h3>
+
+							</div>
+							<div class="mdl-card__actions mdl-card--border">
+								<a href="#"
+									class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50">Classe
+									A</a>
+								<div class="mdl-layout-spacer"></div>
+								<i class="material-icons">location_on</i>
+							</div>
+							<div class="mdl-card__actions mdl-card--border">
+								<a href="#"
+									class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50">Classe
+									B</a>
+								<div class="mdl-layout-spacer"></div>
+								<i class="material-icons">location_on</i>
+							</div>
+							<div class="mdl-card__actions mdl-card--border">
+								<a href="#"
+									class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--blue-grey-50">CLasse
+									C</a>
+								<div class="mdl-layout-spacer"></div>
+								<i class="material-icons">location_on</i>
+							</div>
+						</div>
+					</div>
+				</div>
+	</div>
+
+
+
+
+	</th:main>
+
+
+	</th:main>
+
+	<!-- <!-- modal test -->
+	<div id="myModal" class="modal fade" style="margin-top: 300px">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" data-dismiss="modal">×</button>
+					<h4 class="modal-title">Magasins :</h4>
+				</div>
+				<div class="modal-body">
+					<p class="text-info">
+						<small><strong>Magasin 1:</strong> Metlaoui cité moderne.</small>
+					</p>
+					<p class="text-info">
+						<small><strong>Magasin 2:</strong> Moulares rue Metlaoui.</small>
+					</p>
+					<p class="text-info">
+						<small><strong>Magasin 3:</strong> Redeyef cité Mohamed Gamoudi .</small>
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default close-modal"
+						data-dismiss="modal" autofocus>Close</button>
+					<input type="submit" class="btn btn-primary" value="save" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<a href="http://www.cpg.com.tn" target="_blank" id="view-source"
+		class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored mdl-color-text--white">View
+		Source</a>
+	<script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+	<script src="bootstrap/js/jquery.js"></script>
+	<script src="bootstrap/js/bootstrap.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".launch-modal").click(function() {
+				$("#myModal").modal({
+					backdrop : 'static'
+				});
+			});
+		});
+	</script>
+
+
+
+</body>
+</html>
+
